@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navigationbar from "./Navigationbar";
+import View from "./View";
+import StudentTable from "./StudentTable";
+import TeacherTable from "./TeacherTable";
+import Create from "./Create";
+import StudentCreate from "./StudentCreate";
+import TeacherCreate from "./TeacherCreate";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Navigationbar />
+        <Routes>
+          <Route path="view" element={<View/>}>
+            <Route path="teachertable" element={<TeacherTable/>}/>  
+            <Route path="studenttable" element={<StudentTable/>}/>          
+          </Route>          
+          <Route path="create" element={<Create />}>
+            <Route path="create-teacher" element={<TeacherCreate/>}/>
+            <Route path="create-student" element={<StudentCreate/>}/>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
